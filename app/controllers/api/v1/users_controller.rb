@@ -10,7 +10,7 @@ module Api
 
       def show
         @user = User.find(params[:id])
-        render json: @user.index_json
+        render json: @user, include: "**"
       end
 
       def create

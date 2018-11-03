@@ -1,3 +1,3 @@
 class TaskSerializer < ActiveModel::Serializer
-  attributes :priority, :description
+  attributes :id, :priority, :description
 end
