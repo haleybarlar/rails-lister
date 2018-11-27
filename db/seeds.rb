@@ -10,20 +10,42 @@ require 'faker'
 
 User.create(
   email: Faker::Internet.email,
-  password_digest: Faker::Internet.password
+  password_digest: Faker::Internet.password,
+  lists_completed: 0,
+  tasks_completed: 0,
+  username: Faker::Internet.username,
+  name: Faker::FunnyName.name
 )
 
-20.times do
-  List.create(
-    kind: "todo",
-    user_id: (rand() * 5 + 1).to_i
+
+List.create(
+    kind: "Gratitude",
+    done: true,
+    user_id: 1,
+    time_completed: "2018-11-14T17:54:55.387Z"
   )
-end
+
+
+List.create(
+    kind: "Bucketlist",
+    done: true,
+    user_id: 1,
+    time_completed: "2018-11-10T17:54:55.387Z"
+  )
+
+
+List.create(
+    kind: "Today I need to",
+    done: true,
+    user_id: 1,
+    time_completed: "2018-11-03T17:54:55.387Z"
+  )
 
 20.times do
-  Task.create(
-    priority: "high",
-    description: "I need to do this!",
-    list_id: (rand() * 5 + 1).to_i
+    Task.create(
+    list_id: rand(5),
+    priority: "low",
+    description: "go go",
+    done: false
   )
 end

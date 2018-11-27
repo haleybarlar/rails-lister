@@ -21,6 +21,12 @@ module Api
         end
       end
 
+      def update
+        @task = Task.find(params[:id])
+        @task.update(task_params)
+        render json: @task
+      end
+
       def destroy
         @task = Task.find(params[:id])
         @task.destroy
@@ -29,7 +35,7 @@ module Api
       private
 
       def task_params
-        params.permit(:list_id, :priority, :description)
+        params.permit(:list_id, :priority, :description, :done)
       end
 
     end

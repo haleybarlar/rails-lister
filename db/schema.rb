@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2018_10_30_160250) do
   create_table "lists", force: :cascade do |t|
     t.string "kind"
     t.integer "user_id"
+    t.boolean "done"
+    t.string "time_completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -26,6 +28,7 @@ ActiveRecord::Schema.define(version: 2018_10_30_160250) do
     t.integer "list_id"
     t.string "priority"
     t.string "description"
+    t.boolean "done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,6 +36,11 @@ ActiveRecord::Schema.define(version: 2018_10_30_160250) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
+    t.string "name"
+    t.string "username"
+    t.integer "lists_completed"
+    t.integer "tasks_completed"
+    t.integer "dates_done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

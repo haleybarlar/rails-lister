@@ -3,14 +3,9 @@ module Api
     class ListsController < ApplicationController
 
       def index
-        @lists = List.paginate(:page => params[:page])
-        render json: {
-          lists: @lists,
-          page: @lists.current_page,
-          pages: @lists.total
-        }
+        @lists = List.all
+        render json: @lists
       end
-
 
       def show
         @list = List.find(params[:id])
@@ -26,15 +21,22 @@ module Api
         end
       end
 
+      def update
+        @list = List.find(params[:id])
+        @list.update(list_params)
+        render json: @list
+      end
+
       def destroy
         @list = List.find(params[:id])
         @list.destroy
+        # byebug
       end
 
       private
 
       def list_params
-        params.permit(:user_id, :kind)
+        params.permit(:user_id, :kind, :done, :time_completed)
       end
 
     end
